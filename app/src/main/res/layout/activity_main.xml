@@ -33,14 +33,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Good Morning"
+            android:text="Hey, Welcome Back"
             android:textColor="#FFF"
             android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mr Panda Risky"
+            android:text="Mr Sundar C"
             android:textColor="#FFF"
             android:textSize="16sp" />
 
@@ -109,12 +109,12 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="4dp"
-                    android:src="@drawable/bitcon" />
+                    android:src="@drawable/test" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BitCoin"
+                    android:text="Mark Entry"
                     android:textColor="#0E1843"
                     android:textSize="22sp" />
 
@@ -123,7 +123,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="0dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -132,12 +132,12 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="4dp"
-                    android:src="@drawable/bellcon" />
+                    android:src="@drawable/attend" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bells"
+                    android:text="Attendance"
                     android:textColor="#0E1843"
                     android:textSize="22sp" />
 
@@ -166,12 +166,12 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="4dp"
-                    android:src="@drawable/bookcon" />
+                    android:src="@drawable/circul" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Books"
+                    android:text="Circulars"
                     android:textColor="#0E1843"
                     android:textSize="22sp" />
 
@@ -194,7 +194,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reports"
+                    android:text="Students"
                     android:textColor="#0E1843"
                     android:textSize="22sp" />
 
