@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView bgapp, clover,markEntry,attendance;
+    ImageView bgapp, clover,markEntry,attendance,circular;
     LinearLayout textsplash, texthome, menus;
     Animation frombottom;
     SharedPreferences logInfo;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         textsplash = (LinearLayout) findViewById(R.id.textsplash);
         texthome = (LinearLayout) findViewById(R.id.texthome);
         menus = (LinearLayout) findViewById(R.id.menus);
+        circular = (ImageView) findViewById(R.id.circular);
 
         TV_name1 = findViewById(R.id.name1);
         TV_name2 = findViewById(R.id.name2);
@@ -55,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
 
         texthome.startAnimation(frombottom);
         menus.startAnimation(frombottom);
+
+
+
+        circular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CircularActivity.class));
+            }
+        });
 
         markEntry.setOnClickListener(new View.OnClickListener() {
             @Override
