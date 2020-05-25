@@ -57,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
         texthome.startAnimation(frombottom);
         menus.startAnimation(frombottom);
 
-
-
+        //circular OnClickListner
         circular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
