@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView bgapp, clover,markEntry,attendance,circular;
+    ImageView bgapp, clover,markEntry,attendance,circ;
     LinearLayout textsplash, texthome, menus;
     Animation frombottom;
     SharedPreferences logInfo;
@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         markEntry = findViewById(R.id.markEntry);
         attendance = findViewById(R.id.attendance);
+        circ = findViewById(R.id.circ);
 
         bgapp = (ImageView) findViewById(R.id.bgapp);
         clover = (ImageView) findViewById(R.id.clover);
         textsplash = (LinearLayout) findViewById(R.id.textsplash);
         texthome = (LinearLayout) findViewById(R.id.texthome);
         menus = (LinearLayout) findViewById(R.id.menus);
-        circular = (ImageView) findViewById(R.id.circular);
 
         TV_name1 = findViewById(R.id.name1);
         TV_name2 = findViewById(R.id.name2);
@@ -57,18 +57,17 @@ public class MainActivity extends AppCompatActivity {
         texthome.startAnimation(frombottom);
         menus.startAnimation(frombottom);
 
-        //circular OnClickListner
-        circular.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,CircularActivity.class));
-            }
-        });
-
         markEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,MarkEntryActivity.class));
+            }
+        });
+
+        circ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CircularActivity.class));
             }
         });
 

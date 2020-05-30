@@ -52,14 +52,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "795058091083-0jcjmood7rcs21c6mjppphicddq9uhae.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.facultyapp",
-            "certificate_hash": "e152360a63082abb902eac4af42674ab37707c84"
-          }
-        },
-        {
           "client_id": "795058091083-2f1qfg08f5dheqbc7g8347pk239kgqog.apps.googleusercontent.com",
           "client_type": 3
         }
