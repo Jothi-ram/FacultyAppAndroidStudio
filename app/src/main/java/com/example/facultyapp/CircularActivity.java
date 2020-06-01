@@ -22,6 +22,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class CircularActivity extends AppCompatActivity {
@@ -66,7 +73,7 @@ public class CircularActivity extends AppCompatActivity {
         btnSendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbRef = FirebaseDatabase.getInstance().getReference().child("Circular/"+selectedYear);
+                dbRef = FirebaseDatabase.getInstance().getReference();
 
                 if(TextUtils.isEmpty(newMsg.getText().toString())){
                     newMsg.setError("Enter Message");
@@ -78,13 +85,19 @@ public class CircularActivity extends AppCompatActivity {
                     dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.hasChild(topic)){
+                            if(dataSnapshot.hasChild("Circular/"+selectedYear+"/"+topic)){
                                 newMsgTopic.setError("Topic Already Exist");
                                 newMsgTopic.setText("");
                             }else {
                                 final Message msg = new Message();
                                 msg.setMessage(message);
-                                dbRef.child(topic).setValue(msg);
+                                dbRef.child("Circular/"+selectedYear+"/"+topic).setValue(msg);
+                                for(DataSnapshot ds : dataSnapshot.child("Student/"+selectedYear).getChildren()) {
+                                    if(ds.hasChild("TokenId")) {
+                                        String token_id = ds.child("TokenId").getValue().toString();
+                                        sendPush("Circular",topic,token_id);
+                                    }
+                                }
                             }
                             viewMessage();
                         }
@@ -94,6 +107,7 @@ public class CircularActivity extends AppCompatActivity {
 
                         }
                     });
+
                 }
 
             }
@@ -155,5 +169,83 @@ public class CircularActivity extends AppCompatActivity {
         void setMessage(String message) {
             this.message = message;
         }
+    }
+
+    public void sendPush(final String title,final String msg ,final String token_id) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JSONObject payloadObj = new JSONObject();
+                try {
+                    JSONObject notifyObj = new JSONObject();
+                    notifyObj.put("title", title);
+                    notifyObj.put("body", msg);
+                    notifyObj.put("text", msg);
+
+                    payloadObj.put("to", token_id.trim());
+                    payloadObj.put("priority", "high");
+                    payloadObj.put("notification", notifyObj);
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    e.printStackTrace();
+                }
+                sendMessage(payloadObj.toString());
+
+//                dbRef = FirebaseDatabase.getInstance().getReference().child("Student/"+selectedYear);
+//                dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        String token_id;
+//                        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+//                            if(ds.hasChild("TokenId")) {
+//
+//                            }
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
+//                });
+
+            }
+        }).start();
+    }
+
+    public void sendMessage(String msg) {
+        final String apiKey = "AAAAuR0ntEs:APA91bFm0VX8SjBQNyF-Jlmgr1WV9-3e1imHya7iPYeHcLGmY5_scz9i5xEX1-LL5ewyXqtY3KHq-vdhZBdAK_72yew7T9-epDU0ieGGu30Kq6GjE3PbpodcQ9deWY2xQMP7h8ePe36Q";
+        StringBuffer response = new StringBuffer();
+        try {
+            URL url = new URL("https://fcm.googleapis.com/fcm/send");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Authorization", "key=" + apiKey);
+
+            OutputStream os = conn.getOutputStream();
+            os.write(msg.getBytes());
+            os.flush();
+            os.close();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+//            int responseCode = conn.getResponseCode();
+//            System.out.println("\nSending 'POST' request to URL : " + url);
+//            System.out.println("Post parameters : " + msg);
+//            System.out.println("Response Code : " + responseCode);
+//            String inputLine;
+//            while ((inputLine = in.readLine()) != null) {
+//                response.append(inputLine);
+//            }
+            in.close();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        // print result
+        System.out.println(response.toString());
     }
 }
