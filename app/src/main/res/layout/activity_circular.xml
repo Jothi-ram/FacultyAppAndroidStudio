@@ -7,21 +7,32 @@
     tools:context=".CircularActivity">
 
     <TextView
-        android:id="@+id/topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:text="Send Circulars"
+        android:textSize="29sp"
+        android:layout_marginLeft="90dp"
+        android:textColor="@android:color/black"
+        />
+
+    <TextView
+        android:id="@+id/topic"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:text="Circular Topic :"
         android:textSize="20sp"/>
 
     <EditText
         android:id="@+id/newMsgTopic"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/topic"
         android:ems="10"
-
         android:inputType="textPersonName" />
+
     <EditText
         android:id="@+id/newMessage"
         android:layout_width="match_parent"
@@ -33,7 +44,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="Name" />
+        android:hint="Enter Your Message" />
 
 
     <Button
