@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 public class CircularActivity extends AppCompatActivity {
 
     EditText newMsg,newMsgTopic;
-    Button btnSendMsg;
+    Button btnSendMsg,back2;
     Spinner selectClass;
     RecyclerView displayMessage;
     ArrayList<ArrayList<String>> dataList = new ArrayList<>();
@@ -55,6 +56,7 @@ public class CircularActivity extends AppCompatActivity {
         btnSendMsg = findViewById(R.id.sendNewMessage);
         selectClass = findViewById(R.id.selectClass);
         displayMessage = findViewById(R.id.displayMessage);
+        back2 = findViewById(R.id.back2);
 
         circularAdapter = new CircularAdapter(dataList);
         displayMessage.setAdapter(circularAdapter);
@@ -69,6 +71,12 @@ public class CircularActivity extends AppCompatActivity {
         selectClass.setAdapter(yearAdapter);
         selectClass.setOnItemSelectedListener(new selectedYear());
 
+        back2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CircularActivity.this,MainActivity.class));
+            }
+        });
 
         btnSendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
