@@ -62,7 +62,9 @@ public class AttendanceActivity extends AppCompatActivity {
         btnSave.setVisibility(View.INVISIBLE);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("LoDiNg...");
+        progressDialog.setTitle("Loading...");
+
+
         logInfo = getSharedPreferences("FacultyLoginInfo",MODE_PRIVATE);
         String getSubjectCode = logInfo.getString("subjectCode","Error");
         String getSubjectName = logInfo.getString("subjectName","Error");

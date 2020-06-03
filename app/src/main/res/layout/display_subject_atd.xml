@@ -26,5 +26,5 @@
         android:gravity="center"
         android:textColor="@android:color/holo_green_dark"
         android:layout_marginLeft="10dp"
-        android:text="precentage" />
+        android:text="Perecentage" />
 </RelativeLayout>

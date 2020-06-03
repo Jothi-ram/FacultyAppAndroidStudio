@@ -69,7 +69,7 @@ public class MarkEntryActivity extends AppCompatActivity {
         recyclerView.setAdapter(markAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("LoDiNg...");
+        progressDialog.setTitle("Loading...");
 
         logInfo = getSharedPreferences("FacultyLoginInfo",MODE_PRIVATE);
         subjectArray.add("Select Subject");
